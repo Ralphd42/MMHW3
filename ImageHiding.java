@@ -27,11 +27,20 @@ public class ImageHiding extends JFrame implements ActionListener
  ImageCanvas hostCanvas;
  ImageCanvas secretCanvas;
 
+JRadioButton radHW1;
+JRadioButton radHW2;
+JRadioButton radHW3;
+JButton DoHomeWork;
+ButtonGroup rbGroup;
+
+
+
  Steganography s;
 
  public BufferedImage getHostImage()
  {
   BufferedImage img = null;
+  
 
   try
   {
@@ -104,7 +113,18 @@ public class ImageHiding extends JFrame implements ActionListener
    secretCanvas.setImage(s.getImage());
    secretCanvas.repaint();
   }
- }
+  else if(source==DoHomeWork){
+    // get selected radio button
+    if( radHW1.isSelected())
+    {
+        // process q 1
+    }else if(radHW2.isSelected()){
+        // process q 2
+    }else if(radHW3.isSelected()){
+        // process q 3
+    }
+  }
+}
 
  public ImageHiding()
  {
@@ -138,6 +158,39 @@ public class ImageHiding extends JFrame implements ActionListener
   gbc.gridwidth = GridBagConstraints.REMAINDER;
   layout.setConstraints(encodeBitsMinus, gbc);
   this.add(encodeBitsMinus);
+ /* Add Button group and button here */
+  radHW1 = new JRadioButton(); 
+  radHW1.setText("Part 1");
+  this.add(radHW1);
+
+  radHW2 = new JRadioButton();
+  radHW2.setText("Part 2");
+  this.add(radHW2);
+
+  radHW3 = new JRadioButton();
+  radHW3.setText("Part 3");
+  this.add(radHW3);
+
+  DoHomeWork = new JButton();
+  DoHomeWork.setText("Run");
+  DoHomeWork.addActionListener(this);
+  gbc.gridwidth = GridBagConstraints.REMAINDER;
+  layout.setConstraints(DoHomeWork, gbc);
+  this.add(DoHomeWork);
+  
+  rbGroup = new ButtonGroup();
+  rbGroup.add(radHW1);
+  rbGroup.add(radHW2);
+  rbGroup.add(radHW3);
+  rbGroup.add(DoHomeWork);  
+
+ // gbc.weightx = 1.0;
+  //layout.setConstraints(rbGroup, gbc);
+  //this.add(rbGroup);
+
+
+
+
 
   GridBagLayout imageGridbag = new GridBagLayout();
   GridBagConstraints imageGBC = new GridBagConstraints();
